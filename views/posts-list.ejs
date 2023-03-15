@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head', { title: 'All Posts' }) %>
+    <link rel="stylesheet" href="/styles/posts.css" />
+  </head>
+
+  <body>
+    <%- include('includes/header') %>
+    <main id="all-posts">
+      <h1>All Posts</h1>
+      <ol id="posts-list">
+        <% for(const post of posts) { %>
+        <li>
+          <article class="post-item">
+            <h2><%= post.title %></h2>
+            <p><%= post.summary %></p>
+            <p class="post-item-author">By <%= post.name %></p>
+            <p><%= post.date %></p>
+            <div class="post-actions">
+              <form action="/posts/<%= post.id %>/delete" method="POST">
+                <button class="btn btn-alt">Delete Post</button>
+              </form>
+              <a href="/update-post/<%= post.id %>">Edit Post</a>
+              <a class="btn" href="/posts/<%= post.id %>">View Post</a>
+            </div>
+          </article>
+        </li>
+        <% } %>
+      </ol>
+    </main>
+  </body>
+</html>
